@@ -30,12 +30,21 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               category("abs.jpg", "abs"),
-              category("chest.jpg", "Chaest"),
-              category("back.jpg", "Back"),
-              category("biceps.jpg", "Biceps"),
-              category("triceps.jpg", "Triceps"),
-              category("leg.jpg", "Leg"),
-              category("solder.jpg", "Solder"),
+              category("chest.jpg", "calves"),
+              category("back.jpg", "lats"),
+              category("biceps.jpg", "pectorals"),
+              category("triceps.jpg", "glutes"),
+              category("leg.jpg", "hamstrings"),
+              category("solder.jpg", "quads"),
+              category("solder.jpg", "adductors"),
+              category("solder.jpg", "triceps"),
+              category("solder.jpg", "cardiovascular system"),
+              category("solder.jpg", "spine"),
+              category("solder.jpg", "upper back"),
+              category("solder.jpg", "biceps"),
+              category("solder.jpg", "delts"),
+              category("solder.jpg", "forearms"),
+              category("solder.jpg", "traps"),
             ],
           ),
         ),
@@ -46,12 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget category(String img, text) {
     return InkWell(
       onTap: () {
-        for (var x in controller.homeList.value) {
-          if(x.target== text)
-            {
-              controller.list.add(x);
-            }
-        }
+       controller.filterData(text);
         Get.toNamed('category');
       },
       child: Container(
