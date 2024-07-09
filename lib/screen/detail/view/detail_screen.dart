@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_workout_gym/screen/home/model/home_model.dart';
@@ -16,43 +17,52 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.network(
-                    "${m1.gifUrl}",
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset("assat/img/bg2.jpg",fit: BoxFit.cover,),
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaY: 3,sigmaX: 3),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.network(
+                          "${m1.gifUrl}",
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      buildRow("Name : ", m1.name!),
+                      const SizedBox(height: 10),
+                      buildRow("Target : ", m1.target!),
+                      const SizedBox(height: 10),
+                      buildRow("BodyPart : ", m1.bodyPart!),
+                      const SizedBox(height: 10),
+                      buildRow("Equipment : ", m1.equipment!),
+                      const SizedBox(height: 10),
+                      const Text(
+                        "Instructions :",
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white),
+                      ),
+                      ...m1.instructions!.map((instruction) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                        child: Text(
+                          instruction,
+                          style: const TextStyle(fontSize: 16,color: Colors.white),
+                        ),
+                      )).toList(),
+                    ],
                   ),
                 ),
-                SizedBox(height: 10),
-                buildRow("Name: ", m1.name!),
-                SizedBox(height: 10),
-                buildRow("Target: ", m1.target!),
-                SizedBox(height: 10),
-                buildRow("BodyPart: ", m1.bodyPart!),
-                SizedBox(height: 10),
-                buildRow("Equipment: ", m1.equipment!),
-                SizedBox(height: 10),
-                Text(
-                  "Instructions:",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                ...m1.instructions!.map((instruction) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: Text(
-                    instruction,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                )).toList(),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -63,13 +73,13 @@ class _DetailScreenState extends State<DetailScreen> {
       children: [
         Text(
           text,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white),
         ),
         SizedBox(
           width: 240,
           child: Text(
             txt,
-            style: TextStyle(fontSize: 18,overflow: TextOverflow.ellipsis),
+            style: const TextStyle(fontSize: 18,overflow: TextOverflow.ellipsis,color: Colors.white),
           ),
         ),
       ],
