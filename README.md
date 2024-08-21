@@ -1,8 +1,10 @@
-# home_workout_gym
+# Home Workout Gym
 
 A new Flutter project.
 
 ## Getting Started
+- API
+- state Managemernt - GetX
 
 This project is a starting point for a Flutter application.
 
